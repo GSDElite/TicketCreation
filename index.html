@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesosme/4.7.0/css/font-awesome.min.css">
+<title>GSD Ticket Creation</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<style>
+        /* Style for body and container */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #131212;
+            color: #131212;
+            background: transparent;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: center;
+            Box-shadow: 0px 0px 18px 0 #0c9cfc;
+        }
+        button{
+            padding: 10px 15px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #131212;
+            background-color: transparent;
+            border: backdrop;
+            border-radius: 15px;
+            
+          
+        }
+       
+        button:hover{
+                        
+            box-shadow: 0px 0px 20px 0 #0c9cfc;
+        }
+        button:active{
+            background-color: #2f00ff;
+            box-shadow: 0 5px #6d33f3;
+            transform: translateY(4px);
+        }
+
+        .container:hover{
+            box-shadow: 0px 0px 5px 0 #0c9cfc;
+        }
+        /* ends here */
+</style>
+</head>
+ <body>
+<div class="container">
+<div>
+<center>
+<fieldset class="border p-2">
+<legend class="float-none w-auto">Short Description</legend>
+<center>
+<table>
+<tr align="center">
+<td>
+                            Application Name
+</td>
+<td>
+                            Issue
+</td>
+<td>
+                            Affected Device
+</td>
+</tr>
+<tr>
+<td>
+<select id="AppName"onchange="Stext()" class="form-control">
+<option value=""></option>
+<option value="CVD">CVD</option>
+<option value="MS Outlook">MS Outlook</option>
+<option value="MS Teams">MS Teams</option>
+<option value="Okta">Okta</option>
+<option value="Lan ID">Lan ID</option>
+<option value="Folder">Folder</option>
+<option value="Global Protect">Global Protect</option>
+</select>
+</td>
+<td>
+<input type="text" id="Issue" class="form-control" onchange="Stext()">
+</td>
+<td>
+<select id="AffectedDevice" class="form-control" onchange="Stext()">
+    <option value=""></option>
+    <option value="SS CVD">SS CVD</option>
+    <option value="MS CVD">MS CVD</option>
+    <option value="AIG Laptop">AIG Laptop</option>
+    <option value="Vendor Laptop">Vendor Laptop</option>
+    <option value="Mobile">Mobile</option>
+</select>
+</td>
+</tr>
+</table>
+</center>    
+</fieldset>
+<center>
+<div id="SDText"></div>
+<div id="SDCopy"></div>
+<script>
+    function copySDCopy(){
+        const textToCopy = document.getElementById("SDText").innerText;
+        copyToClipboard(textToCopy);
+    }
+    function Stext(){
+            var AN = document.getElementById("AppName").value
+            var Iss = document.getElementById("Issue").value
+            var Ad = document.getElementById("AffectedDevice").value
+                document.getElementById("SDText").innerHTML = AN + "|" + Iss + "|" + Ad;
+                document.getElementById("SDCopy").innerHTML = "<button "+"onclick="+"copySDCopy()"+">Copy to clipboard</button>";
+            }
+            function copyToClipboard(text) {
+            const tempElement = document.createElement('textarea');
+            tempElement.value = text;
+            tempElement.style.position = 'absolute';
+            tempElement.style.left = '-9999px';
+            tempElement.style.top = '-9999px';
+            document.body.appendChild(tempElement);
+            tempElement.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempElement);
+            }
+</script>
+
+</center>
+</center>
+    <fieldset class="border p-2">
+    <legend class="float-none w-auto">BTTR</legend>
+    BTTR (Best Time to Reach):
+    <input type="text" id="Bttr" class="form-control" onchange="BTTR1()">
+    <br>Contact Number: 
+    <input type="text" id="Contact" class="form-control" onchange="BTTR1()">
+    <br>Region:  
+    <select id="Region" class="form-control" onchange="BTTR1()">
+    <option value=""></option>
+    <option value="APAC">APAC</option>
+    <option value="EMEA">EMEA</option>
+    <option value="AMER">AMER</option>
+    </select>
+    <div id="BTtext"></div>
+    <div id="BTcopy"></div>
+    <script>
+        function BTcopy(){
+            const textToCopy = document.getElementById("BTtext").innerText;
+            copyToClipboard(textToCopy);  
+        }
+        function BTTR1(){
+            var BT1 = document.getElementById("Bttr").value
+            var Con = document.getElementById("Contact").value
+            var Reg = document.getElementById("Region").value
+                document.getElementById("BTtext").innerHTML = "BTTR (Best Time to Reach): "+ BT1 + "<br>" + "Contact Number: " + Con + "<br>" + "Region: " + Reg;
+                document.getElementById("BTcopy").innerHTML = "<button "+"onclick="+"BTcopy()"+">Copy to clipboard</button>";
+               
+            }
+    </script>
+    </fieldset>
+    
+</div>
+</div>
+</body>
+</html>
